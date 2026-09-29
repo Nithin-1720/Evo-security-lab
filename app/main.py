@@ -3,6 +3,7 @@ from fastapi.responses import HTMLResponse
 from app.routes.customers import router as customers_router
 from app.routes.render import router as render_router
 from app.routes.files import router as files_router
+from app.routes.ai import router as ai_router
 
 app = FastAPI(
     title="Evo Vulnerable AI Lab",
@@ -13,7 +14,7 @@ app = FastAPI(
 app.include_router(customers_router)
 app.include_router(render_router)
 app.include_router(files_router)
-
+app.include_router(ai_router)
 
 
 @app.get("/")
