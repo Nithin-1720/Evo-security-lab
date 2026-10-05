@@ -5,3 +5,10 @@ python-multipart
 langchain
 langchain-openai
 openai
+mcp[cli]
+itsdangerous
+pyotp
+qrcode[pil]
+requests
+pyyaml
+pyjwt

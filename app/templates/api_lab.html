@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Vulnerable API Lab</h1>
+
+<div class="warning">
+
+All APIs on this page are intentionally vulnerable.
+
+Use only against this isolated lab instance.
+
+</div>
+
+
+<div class="cards">
+
+    <div class="card">
+
+        <h3>IDOR / BOLA</h3>
+
+        <p>
+            Read another customer's private note without authorization.
+        </p>
+
+        <a href="/api/vuln/customers/2/note">
+            Test customer 2
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>SSRF</h3>
+
+        <p>
+            Server fetches an attacker-controlled URL.
+        </p>
+
+        <a href="/api/vuln/fetch?url=http://127.0.0.1:8000/health">
+            Fetch localhost health endpoint
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>Command Injection</h3>
+
+        <p>
+            Host value is passed through a shell.
+        </p>
+
+        <a href="/api/vuln/diagnostics/ping?host=127.0.0.1">
+            Ping localhost
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>Sensitive Configuration</h3>
+
+        <p>
+            Internal configuration exposed without authentication.
+        </p>
+
+        <a href="/api/vuln/internal/config">
+            View configuration
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>Admin API</h3>
+
+        <p>
+            Admin data exposed without authorization.
+        </p>
+
+        <a href="/api/admin/users">
+            View users
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>Open Redirect</h3>
+
+        <p>
+            Arbitrary redirect destination.
+        </p>
+
+        <a href="/api/vuln/redirect?next=/docs">
+            Test redirect
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>Swagger</h3>
+
+        <p>
+            Test POST/PUT endpoints interactively.
+        </p>
+
+        <a href="/docs">
+            Open Swagger UI
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>OpenAPI</h3>
+
+        <p>
+            API specification for Snyk API testing.
+        </p>
+
+        <a href="/openapi.json">
+            View OpenAPI JSON
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h1>
+    Administration
+</h1>
+
+
+<div class="warning">
+
+    LAB VULNERABILITY:
+
+    This page intentionally contains broken authorization.
+
+    Any authenticated user can access it.
+
+</div>
+
+
+<table>
+
+    <thead>
+
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>TOTP</th>
+        <th>OTP</th>
+    </tr>
+
+    </thead>
+
+
+    <tbody>
+
+    {% for user in users %}
+
+    <tr>
+
+        <td>{{ user["id"] }}</td>
+
+        <td>{{ user["username"] }}</td>
+
+        <td>{{ user["display_name"] }}</td>
+
+        <td>{{ user["role"] }}</td>
+
+        <td>{{ user["totp_enabled"] }}</td>
+
+        <td>{{ user["otp_enabled"] }}</td>
+
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="login-container">
+
+<div class="login-card">
+
+<h1>
+    Email OTP Verification
+</h1>
+
+<p>
+    A six-digit code was sent to the lab mailbox.
+</p>
+
+<p>
+    <a
+        href="/lab/mailbox"
+        target="_blank"
+    >
+        Open Lab Mailbox
+    </a>
+</p>
+
+
+{% if error %}
+
+<div class="error">
+    {{ error }}
+</div>
+
+{% endif %}
+
+
+<form
+    action="/mfa/otp"
+    method="post"
+>
+
+    <label>
+        OTP code
+    </label>
+
+    <input
+        type="text"
+        name="code"
+        maxlength="6"
+        autocomplete="one-time-code"
+        required
+    >
+
+    <button type="submit">
+        Verify OTP
+    </button>
+
+</form>
+
+</div>
+
+</div>
+
+{% endblock %}

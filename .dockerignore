@@ -1,0 +1,17 @@
+.git
+.gitignore
+
+.venv
+legacy-python/.venv
+
+frontend/node_modules
+
+__pycache__
+*.pyc
+*.pyo
+
+*.log
+
+lab-data/*.db
+
+.cursor

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="login-container">
+
+<div class="login-card">
+
+<h1>
+    Authenticator Verification
+</h1>
+
+<p>
+    Enter the six-digit code from your authenticator.
+</p>
+
+
+{% if error %}
+
+<div class="error">
+    {{ error }}
+</div>
+
+{% endif %}
+
+
+<form
+    action="/mfa/totp"
+    method="post"
+>
+
+    <label>
+        TOTP code
+    </label>
+
+    <input
+        type="text"
+        name="code"
+        maxlength="6"
+        autocomplete="one-time-code"
+        required
+    >
+
+    <button type="submit">
+        Verify
+    </button>
+
+</form>
+
+</div>
+
+</div>
+
+{% endblock %}

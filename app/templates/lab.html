@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h1>
+    Vulnerability Catalog
+</h1>
+
+
+<div class="warning">
+
+    This application is intentionally vulnerable.
+
+    Use only in an isolated security-testing environment.
+
+</div>
+
+
+<table>
+
+<thead>
+
+<tr>
+
+    <th>ID</th>
+    <th>Component</th>
+    <th>Vulnerability</th>
+    <th>Target Scanner</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+    <td>LAB-001</td>
+
+    <td>Customer search</td>
+
+    <td>SQL Injection</td>
+
+    <td>
+        Snyk Code / API & Web
+    </td>
+
+</tr>
+
+
+<tr>
+
+    <td>LAB-002</td>
+
+    <td>Render endpoint</td>
+
+    <td>Reflected XSS</td>
+
+    <td>
+        Snyk Code / Web
+    </td>
+
+</tr>
+
+
+<tr>
+
+    <td>LAB-003</td>
+
+    <td>File endpoint</td>
+
+    <td>Path Traversal</td>
+
+    <td>
+        Snyk Code / API & Web
+    </td>
+
+</tr>
+
+
+<tr>
+
+    <td>LAB-004</td>
+
+    <td>Password storage</td>
+
+    <td>Weak SHA-1 hashing</td>
+
+    <td>
+        Snyk Code
+    </td>
+
+</tr>
+
+
+<tr>
+
+    <td>LAB-005</td>
+
+    <td>Admin panel</td>
+
+    <td>Broken Access Control</td>
+
+    <td>
+        API & Web
+    </td>
+
+</tr>
+
+
+<tr>
+
+    <td>LAB-AI-001</td>
+
+    <td>Evo MCP</td>
+
+    <td>Private Data</td>
+
+    <td>
+        Evo
+    </td>
+
+</tr>
+
+
+<tr>
+
+    <td>LAB-AI-002</td>
+
+    <td>Evo MCP</td>
+
+    <td>Untrusted Content</td>
+
+    <td>
+        Evo
+    </td>
+
+</tr>
+
+<tr>
+    <td>LAB-API-001</td>
+    <td>Customer Notes API</td>
+    <td>IDOR / BOLA</td>
+    <td>API & Web</td>
+</tr>
+
+<tr>
+    <td>LAB-API-002</td>
+    <td>URL Fetcher</td>
+    <td>SSRF</td>
+    <td>SAST / API & Web</td>
+</tr>
+
+<tr>
+    <td>LAB-API-003</td>
+    <td>Diagnostics</td>
+    <td>Command Injection</td>
+    <td>SAST / API & Web</td>
+</tr>
+
+<tr>
+    <td>LAB-API-004</td>
+    <td>YAML Import</td>
+    <td>Unsafe Deserialization</td>
+    <td>SAST / API</td>
+</tr>
+
+<tr>
+    <td>LAB-API-005</td>
+    <td>Redirect</td>
+    <td>Open Redirect</td>
+    <td>SAST / Web</td>
+</tr>
+
+<tr>
+    <td>LAB-API-006</td>
+    <td>Internal Config</td>
+    <td>Sensitive Data Exposure</td>
+    <td>SAST / API & Web</td>
+</tr>
+
+<tr>
+    <td>LAB-API-007</td>
+    <td>User Profile</td>
+    <td>Mass Assignment / Privilege Escalation</td>
+    <td>API & Web</td>
+</tr>
+
+<tr>
+    <td>LAB-AUTH-009</td>
+    <td>JWT</td>
+    <td>Weak JWT Secret / No Expiration</td>
+    <td>SAST / API</td>
+</tr>
+
+<tr>
+    <td>LAB-AUTH-010</td>
+    <td>JWT Validation</td>
+    <td>Signature Verification Disabled</td>
+    <td>SAST / API</td>
+</tr>
+
+<tr>
+    <td>LAB-API-011</td>
+    <td>Admin APIs</td>
+    <td>Broken Access Control</td>
+    <td>API & Web</td>
+</tr>
+
+</tbody>
+
+</table>
+
+
+{% endblock %}

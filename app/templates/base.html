@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>
+        Evo Vulnerable AI Lab
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/styles.css"
+    >
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div>
+        <strong>Evo Vulnerable AI Lab</strong>
+        <span class="lab-badge">LAB ONLY</span>
+    </div>
+
+    {% if request.session.get("username") %}
+
+        <div>
+
+            {{ request.session.get("display_name") }}
+
+            <span class="role">
+                {{ request.session.get("role") }}
+            </span>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</header>
+
+
+<div class="layout">
+
+    {% if request.session.get("username") %}
+
+    <aside class="sidebar">
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/customers-ui">
+            Customers
+        </a>
+
+        <a href="/admin">
+            Admin
+        </a>
+
+        <a href="/api/ai/chat?prompt=hello">
+            AI Assistant API
+        </a>
+
+        <a href="/docs">
+            Swagger API
+        </a>
+
+        <a href="/lab">
+            Security Lab
+        </a>
+
+        <a href="/mfa/setup/totp">
+            MFA Setup
+        </a>
+        
+        <a href="/lab/mailbox">
+            Lab Mailbox
+        </a>
+
+        <a href="/api-lab">
+            API Security Lab
+        </a>
+
+        <a href="/ai-chat">
+            AI Security Lab
+        </a>
+
+    </aside>
+
+    {% endif %}
+
+
+    <main class="content">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

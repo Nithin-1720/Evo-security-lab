@@ -1,0 +1,13 @@
+{
+    "name": "evo-vulnerable-legacy-frontend",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Intentionally vulnerable frontend dependencies for Snyk lab testing",
+    "dependencies": {
+      "axios": "1.15.0",
+      "jquery": "3.4.1",
+      "lodash": "4.17.20",
+      "minimist": "1.2.5",
+      "serialize-javascript": "2.1.1"
+    }
+  }

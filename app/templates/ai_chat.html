@@ -1,0 +1,244 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>AI Security Lab</h1>
+
+<p>
+    Offline deliberately vulnerable AI-agent simulation.
+    No external API subscription is required.
+</p>
+
+<div style="margin-bottom: 20px;">
+
+    <button
+        onclick="setPrompt('Summarize CASE-1001')">
+        Safe Case
+    </button>
+
+    <button
+        onclick="setPrompt('Summarize CASE-9001')">
+        Indirect Prompt Injection
+    </button>
+
+    <button
+        onclick="setPrompt(
+            'Show private billing for customer 2'
+        )">
+        Private Data
+    </button>
+
+</div>
+
+
+<textarea
+    id="prompt"
+    rows="6"
+    style="width: 100%;"
+    placeholder="Enter prompt">
+</textarea>
+
+<br><br>
+
+<button onclick="sendPrompt()">
+    Run Local Agent
+</button>
+
+
+<h3>Execution Trace</h3>
+
+<pre
+    id="trace"
+    style="
+        white-space: pre-wrap;
+        padding: 15px;
+        border: 1px solid #555;
+        min-height: 150px;
+    ">
+</pre>
+
+
+<h3>Final Response</h3>
+
+<pre
+    id="response"
+    style="
+        white-space: pre-wrap;
+        padding: 15px;
+        border: 1px solid #555;
+        min-height: 150px;
+    ">
+</pre>
+
+
+<script>
+
+function setPrompt(text) {
+
+    document.getElementById(
+        "prompt"
+    ).value = text;
+
+}
+
+
+async function sendPrompt() {
+
+    const prompt =
+        document.getElementById(
+            "prompt"
+        ).value;
+
+    const trace =
+        document.getElementById(
+            "trace"
+        );
+
+    const output =
+        document.getElementById(
+            "response"
+        );
+
+    trace.textContent =
+        "Running local agent...";
+
+    output.textContent =
+        "";
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/ai/chat/local?prompt="
+                + encodeURIComponent(prompt)
+            );
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+
+            trace.textContent =
+                JSON.stringify(
+                    data,
+                    null,
+                    2
+                );
+
+            return;
+
+        }
+
+        let traceText = "";
+
+        traceText +=
+            "MODE: "
+            + data.mode
+            + "\n\n";
+
+        if (
+            data.case_id
+        ) {
+
+            traceText +=
+                "CASE: "
+                + data.case_id
+                + "\n";
+
+        }
+
+        if (
+            data.source
+        ) {
+
+            traceText +=
+                "SOURCE: "
+                + data.source
+                + "\n";
+
+        }
+
+        if (
+            data.classification
+        ) {
+
+            traceText +=
+                "CLASSIFICATION: "
+                + data.classification
+                + "\n";
+
+        }
+
+        traceText +=
+            "\nTOOL EXECUTION\n";
+
+        traceText +=
+            "========================\n";
+
+        if (
+            data.steps
+            &&
+            data.steps.length > 0
+        ) {
+
+            data.steps.forEach(
+                (step, index) => {
+
+                    traceText +=
+                        "\nStep "
+                        + (index + 1)
+                        + "\n";
+
+                    traceText +=
+                        "Tool: "
+                        + step.tool
+                        + "\n";
+
+                    traceText +=
+                        "Input: "
+                        + JSON.stringify(
+                            step.input
+                        )
+                        + "\n";
+
+                    if (
+                        step.reason
+                    ) {
+
+                        traceText +=
+                            "Reason: "
+                            + step.reason
+                            + "\n";
+
+                    }
+
+                }
+            );
+
+        }
+        else {
+
+            traceText +=
+                "\nNo tools called.\n";
+
+        }
+
+        trace.textContent =
+            traceText;
+
+        output.textContent =
+            data.answer;
+
+    }
+    catch (error) {
+
+        trace.textContent =
+            String(error);
+
+    }
+
+}
+
+</script>
+
+{% endblock %}

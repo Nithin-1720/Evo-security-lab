@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>
+    Security Lab Dashboard
+</h1>
+
+<p>
+    Welcome,
+    {{ request.session.get("display_name") }}.
+</p>
+
+
+<div class="cards">
+
+    <div class="card">
+
+        <h3>Customers</h3>
+
+        <div class="metric">
+            {{ customer_count }}
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>Users</h3>
+
+        <div class="metric">
+            {{ user_count }}
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>Audit Events</h3>
+
+        <div class="metric">
+            {{ audit_count }}
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>AI Agent</h3>
+
+        <div class="metric">
+            Enabled
+        </div>
+
+    </div>
+
+</div>
+
+
+<h2>
+    Security Test Surfaces
+</h2>
+
+
+<table>
+
+    <tr>
+        <th>Surface</th>
+        <th>Status</th>
+    </tr>
+
+    <tr>
+        <td>Snyk Open Source / SCA</td>
+        <td>Preparing</td>
+    </tr>
+
+    <tr>
+        <td>Snyk Code / SAST</td>
+        <td>Enabled</td>
+    </tr>
+
+    <tr>
+        <td>Snyk Secrets</td>
+        <td>Preparing</td>
+    </tr>
+
+    <tr>
+        <td>Snyk Container</td>
+        <td>Preparing</td>
+    </tr>
+
+    <tr>
+        <td>Snyk IaC</td>
+        <td>Preparing</td>
+    </tr>
+
+    <tr>
+        <td>Snyk API & Web</td>
+        <td>Preparing</td>
+    </tr>
+
+    <tr>
+        <td>Snyk Evo</td>
+        <td>Enabled</td>
+    </tr>
+
+</table>
+
+
+{% endblock %}

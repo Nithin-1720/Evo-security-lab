@@ -1,13 +1,30 @@
+# Python
 .venv/
+legacy-python/.venv/
 __pycache__/
 *.pyc
+*.pyo
 
+# Node
+node_modules/
+frontend/node_modules/
+
+# Local databases
+*.db
+
+# Environment / real credentials
 .env
 .env.*
+!.env.example
 
+# Logs
 *.log
 
-.idea/
-.vscode/
+# Generated Snyk evidence
+snyk-aibom.html
+snyk-aibom.json
+aibom-policy-results.json
 
-lab-data/*.db
+# OS/editor junk
+.DS_Store
+Thumbs.db

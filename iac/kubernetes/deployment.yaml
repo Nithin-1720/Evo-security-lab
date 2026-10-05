@@ -1,0 +1,173 @@
+# ============================================================
+# EVO VULNERABLE AI LAB
+#
+# INTENTIONALLY INSECURE KUBERNETES MANIFEST.
+#
+# DO NOT APPLY TO A REAL CLUSTER.
+# SCANNING LAB ONLY.
+# ============================================================
+
+
+apiVersion: apps/v1
+
+kind: Deployment
+
+
+metadata:
+
+  name: evo-vulnerable-ai-lab
+
+
+spec:
+
+  replicas: 1
+
+
+  selector:
+
+    matchLabels:
+
+      app: evo-vulnerable-ai-lab
+
+
+  template:
+
+    metadata:
+
+      labels:
+
+        app: evo-vulnerable-ai-lab
+
+
+    spec:
+
+      #
+      # INTENTIONALLY DANGEROUS
+      #
+
+      hostNetwork: true
+
+      hostPID: true
+
+      automountServiceAccountToken: true
+
+
+      containers:
+
+        - name: vulnerable-app
+
+
+          #
+          # INTENTIONALLY USING latest TAG
+          #
+
+          image: evo-vulnerable-ai-lab:latest
+
+
+          ports:
+
+            - containerPort: 8000
+
+
+          securityContext:
+
+            privileged: true
+
+            runAsUser: 0
+
+            runAsNonRoot: false
+
+            allowPrivilegeEscalation: true
+
+            readOnlyRootFilesystem: false
+
+
+            capabilities:
+
+              add:
+
+                - SYS_ADMIN
+
+                - NET_ADMIN
+
+
+            seccompProfile:
+
+              type: Unconfined
+
+
+          env:
+
+            - name: DEBUG
+
+              value: "true"
+
+
+            - name: DB_PASSWORD
+
+              value: "LabDatabasePassword123!"
+
+
+            - name: INTERNAL_API_KEY
+
+              value: "EVO-LAB-INTERNAL-API-KEY"
+
+
+          volumeMounts:
+
+            - name: host-root
+
+              mountPath: /host
+
+
+          #
+          # INTENTIONALLY MISSING:
+          #
+          # resources.requests
+          # resources.limits
+          # readinessProbe
+          # livenessProbe
+          #
+
+
+      volumes:
+
+        - name: host-root
+
+
+          hostPath:
+
+            path: /
+
+            type: Directory
+
+
+---
+
+apiVersion: v1
+
+kind: Service
+
+
+metadata:
+
+  name: evo-vulnerable-ai-lab
+
+
+spec:
+
+  selector:
+
+    app: evo-vulnerable-ai-lab
+
+
+  type: NodePort
+
+
+  ports:
+
+    - port: 8000
+
+      targetPort: 8000
+
+      nodePort: 30080

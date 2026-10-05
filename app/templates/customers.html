@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>
+    Customers
+</h1>
+
+
+<table>
+
+    <thead>
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+    </tr>
+
+    </thead>
+
+
+    <tbody>
+
+    {% for customer in customers %}
+
+    <tr>
+
+        <td>
+            {{ customer["id"] }}
+        </td>
+
+        <td>
+            {{ customer["name"] }}
+        </td>
+
+        <td>
+            {{ customer["email"] if "email" in customer.keys() else "" }}
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+
+<p>
+    API search:
+    <a href="/api/customers/search?name=Alice">
+        Test customer API
+    </a>
+</p>
+
+{% endblock %}

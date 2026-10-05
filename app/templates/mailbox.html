@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>
+    Lab Mailbox
+</h1>
+
+
+<div class="warning">
+
+LAB VULNERABILITY:
+
+This mailbox is intentionally accessible
+without authentication and displays OTP codes.
+
+</div>
+
+
+<table>
+
+<thead>
+
+<tr>
+    <th>ID</th>
+    <th>Recipient</th>
+    <th>Subject</th>
+    <th>Message</th>
+    <th>OTP</th>
+    <th>Time</th>
+</tr>
+
+</thead>
+
+
+<tbody>
+
+{% for message in messages %}
+
+<tr>
+
+    <td>
+        {{ message["id"] }}
+    </td>
+
+    <td>
+        {{ message["recipient"] }}
+    </td>
+
+    <td>
+        {{ message["subject"] }}
+    </td>
+
+    <td>
+        {{ message["body"] }}
+    </td>
+
+    <td>
+        <strong>
+            {{ message["otp_code"] }}
+        </strong>
+    </td>
+
+    <td>
+        {{ message["created_at"] }}
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}
