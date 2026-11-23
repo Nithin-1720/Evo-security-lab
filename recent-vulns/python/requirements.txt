@@ -1,0 +1,22 @@
+# ============================================================
+# OCT-NOV 2026 RECENT DISCLOSURE TEST PACK
+# LAB ONLY
+#
+# These packages are intentionally pinned to versions affected
+# by recently published vulnerabilities.
+# Do not use in production.
+# ============================================================
+
+# October 2026
+Pillow==12.2.0
+filelock==4.0.8
+
+# November 2026
+aiohttp==3.14.3
+arize-phoenix==15.6.0
+mistune==3.3.3
+
+# AI/application-oriented recent findings
+chainlit==2.11.0
+crewai-tools==1.15.16
+mlflow==3.14.0

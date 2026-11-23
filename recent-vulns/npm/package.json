@@ -1,0 +1,13 @@
+{
+    "name": "evo-recent-vulns-oct-nov-2026",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Recent Oct-Nov 2026 vulnerability detection lab",
+    "dependencies": {
+      "@fastify/multipart": "10.1.3",
+      "effect": "3.22.0",
+      "next": "16.4.4",
+      "tiny-secp256k1": "2.2.4",
+      "@bitcoin-js/tiny-secp256k1-asmjs": "2.2.4"
+    }
+  }
